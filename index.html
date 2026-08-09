@@ -823,11 +823,7 @@
       function notify(type, props) {
         try {
           var body = JSON.stringify(Object.assign({ type: type }, props || {}));
-          if (navigator.sendBeacon) {
-            navigator.sendBeacon(WORKER, new Blob([body], { type: 'application/json' }));
-          } else {
-            fetch(WORKER, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body, keepalive: true });
-          }
+          fetch(WORKER, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body, keepalive: true }).catch(function(){});
         } catch (e) {}
       }
       // capture UTM once
