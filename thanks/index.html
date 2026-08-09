@@ -78,15 +78,17 @@
         try { if (window.posthog && posthog.capture) posthog.capture(name, props || {}); } catch (e) {}
       }
 
-      // Purchase — fire once per browser (guard against refresh double-count)
-      var guard = 'semargi_purchase_fired';
+      // Purchase — dedupe per Stripe checkout session (falls back to per-browser)
+      var sid = '';
+      try { sid = new URLSearchParams(location.search).get('session_id') || ''; } catch (e) {}
+      var guard = 'semargi_purchase_' + (sid || 'default');
       var already = false;
       try { already = !!localStorage.getItem(guard); } catch (e) {}
       if (!already) {
         try { localStorage.setItem(guard, String(Date.now())); } catch (e) {}
-        try { fbq('track', 'Purchase', { value: 59, currency: 'USD', content_name: 'femme_two_sessions' }); } catch (e) {}
-        ph('purchase', { value: 59, currency: 'USD' });
-        notify('thanks_view');
+        try { fbq('track', 'Purchase', { value: 59, currency: 'USD', content_name: 'femme_two_sessions' }, sid ? { eventID: sid } : undefined); } catch (e) {}
+        ph('purchase', { value: 59, currency: 'USD', session: sid });
+        notify('thanks_view', sid ? { name: 'session ' + sid.slice(-8) } : {});
       } else {
         ph('thanks_revisit');
       }
