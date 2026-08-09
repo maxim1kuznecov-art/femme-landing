@@ -4,6 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Semargi — Private Makeup Sessions for Trans Women</title>
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','1525994938895511');
+    fbq('track','PageView');
+  </script>
+
+  <!-- PostHog -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once identify set_config reset opt_in_capturing opt_out_capturing".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_tXNhFodRZxQmfqrnHqjiW6eeVLswQLAEiURWKAgwUYFe',{api_host:'https://us.i.posthog.com',person_profiles:'identified_only'});
+  </script>
+
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -798,6 +816,38 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      var WORKER = 'https://curly-poetry-c822.maxim1kuznecov.workers.dev/';
+      function notify(type, props) {
+        try {
+          var body = JSON.stringify(Object.assign({ type: type }, props || {}));
+          if (navigator.sendBeacon) {
+            navigator.sendBeacon(WORKER, new Blob([body], { type: 'application/json' }));
+          } else {
+            fetch(WORKER, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body, keepalive: true });
+          }
+        } catch (e) {}
+      }
+      // capture UTM once
+      var utm = {};
+      try {
+        var sp = new URLSearchParams(location.search);
+        ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k){ var v = sp.get(k); if (v) utm[k] = v; });
+        if (Object.keys(utm).length) localStorage.setItem('semargi_utm', JSON.stringify(utm));
+        else utm = JSON.parse(localStorage.getItem('semargi_utm') || '{}');
+      } catch (e) {}
+
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest ? e.target.closest('a[href*="buy.stripe.com"]') : null;
+        if (!a) return;
+        try { fbq('track', 'InitiateCheckout', { value: 59, currency: 'USD', content_name: 'femme_two_sessions' }); } catch (err) {}
+        try { if (window.posthog && posthog.capture) posthog.capture('checkout_click', { utm: utm }); } catch (err) {}
+        notify('checkout_click', Object.keys(utm).length ? { utm: utm } : {});
+      });
+    })();
+  </script>
 
 </body>
 </html>
