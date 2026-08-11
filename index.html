@@ -840,9 +840,30 @@
       document.addEventListener('click', function (e) {
         var a = e.target.closest ? e.target.closest('a[href*="buy.stripe.com"]') : null;
         if (!a) return;
+        e.preventDefault();
+        var fallbackUrl = a.href;
+
         try { fbq('track', 'InitiateCheckout', { value: 59, currency: 'USD', content_name: 'femme_two_sessions' }); } catch (err) {}
         try { if (window.posthog && posthog.capture) posthog.capture('checkout_click', { utm: utm }); } catch (err) {}
         notify('checkout_click', Object.keys(utm).length ? { utm: utm } : {});
+
+        var done = false;
+        function goFallback() { if (done) return; done = true; location.href = fallbackUrl; }
+        var safety = setTimeout(goFallback, 4000);
+
+        fetch('https://curly-poetry-c822.maxim1kuznecov.workers.dev/create-checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ utm: utm }),
+        })
+          .then(function (r) { return r.json(); })
+          .then(function (d) {
+            clearTimeout(safety);
+            if (done) return;
+            done = true;
+            if (d && d.url) { location.href = d.url; } else { goFallback(); }
+          })
+          .catch(function () { clearTimeout(safety); goFallback(); });
       });
     })();
   </script>
