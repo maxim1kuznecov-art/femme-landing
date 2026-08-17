@@ -386,6 +386,73 @@
       .trust-stat .num { font-size: 22px; }
       .jake-photo { aspect-ratio: 4/3; }
     }
+
+    /* ── BOOKING MODAL ── */
+    .booking-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    .booking-modal-overlay.open { display: flex; }
+    .booking-modal {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 24px;
+      max-width: 420px;
+      width: 100%;
+      position: relative;
+      margin: auto;
+    }
+    .booking-modal-close {
+      position: absolute;
+      top: 16px; right: 16px;
+      background: none; border: none;
+      color: var(--text-muted);
+      font-size: 26px;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px;
+    }
+    .booking-modal-close:hover { color: var(--text); }
+    .booking-modal h3 { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
+    .booking-modal-sub { font-size: 14px; color: var(--text-muted); margin-bottom: 22px; line-height: 1.5; }
+    .booking-label { display: block; font-size: 13px; font-weight: 700; margin: 18px 0 6px; color: var(--text); }
+    .booking-label.first { margin-top: 0; }
+    .optional-tag { font-weight: 400; color: var(--text-muted); }
+    .booking-input {
+      width: 100%;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      color: var(--text);
+      font-size: 15px;
+      font-family: inherit;
+    }
+    .booking-input:focus { outline: none; border-color: var(--orange); }
+    .pronoun-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.15s;
+      font-family: inherit;
+    }
+    .chip:hover { border-color: var(--orange); color: var(--text); }
+    .chip.selected { background: var(--orange); border-color: var(--orange); color: #fff; }
+    .booking-privacy-note { font-size: 12px; color: var(--text-muted); text-align: center; margin-top: 16px; }
+    .booking-error { font-size: 13px; color: #ff6b6b; margin-top: 8px; display: none; }
   </style>
 </head>
 <body>
@@ -819,6 +886,37 @@
     </div>
   </footer>
 
+  <!-- BOOKING MODAL -->
+  <div class="booking-modal-overlay" id="bookingModalOverlay">
+    <div class="booking-modal">
+      <button type="button" class="booking-modal-close" id="bookingModalClose" aria-label="Close">&times;</button>
+      <h3>Almost there</h3>
+      <p class="booking-modal-sub">Just a couple of details before checkout — so we know how to reach you and address you.</p>
+      <form id="bookingForm">
+        <label class="booking-label first" for="bookingEmail">Email</label>
+        <input class="booking-input" type="email" id="bookingEmail" required placeholder="you@example.com">
+
+        <label class="booking-label" for="bookingName">What should we call you?</label>
+        <input class="booking-input" type="text" id="bookingName" required placeholder="Your name">
+
+        <label class="booking-label">Pronouns <span class="optional-tag">(optional)</span></label>
+        <div class="pronoun-chips" id="pronounChips">
+          <button type="button" class="chip" data-value="She/her">She/her</button>
+          <button type="button" class="chip" data-value="They/them">They/them</button>
+          <button type="button" class="chip" data-value="He/him">He/him</button>
+          <button type="button" class="chip" data-value="Prefer not to say">Prefer not to say</button>
+          <button type="button" class="chip" data-value="__other__">Other</button>
+        </div>
+        <input class="booking-input" type="text" id="pronounOther" placeholder="Type your pronouns" style="display:none; margin-top: 10px;">
+
+        <div class="booking-error" id="bookingError">Please enter a valid email and your name.</div>
+
+        <button type="submit" class="btn btn-full" style="margin-top: 22px;" id="bookingSubmit">Continue to payment — $59</button>
+        <div class="booking-privacy-note">🔒 Only used to reach you about your sessions. Never shared.</div>
+      </form>
+    </div>
+  </div>
+
   <script>
     (function () {
       var WORKER = 'https://curly-poetry-c822.maxim1kuznecov.workers.dev/';
@@ -837,15 +935,69 @@
         else utm = JSON.parse(localStorage.getItem('semargi_utm') || '{}');
       } catch (e) {}
 
+      // ── Booking modal (email / name / pronouns before checkout) ──
+      var overlay = document.getElementById('bookingModalOverlay');
+      var form = document.getElementById('bookingForm');
+      var closeBtn = document.getElementById('bookingModalClose');
+      var emailInput = document.getElementById('bookingEmail');
+      var nameInput = document.getElementById('bookingName');
+      var otherInput = document.getElementById('pronounOther');
+      var errorEl = document.getElementById('bookingError');
+      var chips = document.querySelectorAll('.chip');
+      var selectedPronoun = '';
+      var fallbackUrl = '';
+
+      chips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          chips.forEach(function (c) { c.classList.remove('selected'); });
+          chip.classList.add('selected');
+          if (chip.getAttribute('data-value') === '__other__') {
+            otherInput.style.display = 'block';
+            otherInput.focus();
+            selectedPronoun = '';
+          } else {
+            otherInput.style.display = 'none';
+            selectedPronoun = chip.getAttribute('data-value');
+          }
+        });
+      });
+
+      function openModal(href) {
+        fallbackUrl = href;
+        errorEl.style.display = 'none';
+        overlay.classList.add('open');
+      }
+      function closeModal() { overlay.classList.remove('open'); }
+      closeBtn.addEventListener('click', closeModal);
+      overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
+
       document.addEventListener('click', function (e) {
         var a = e.target.closest ? e.target.closest('a[href*="buy.stripe.com"]') : null;
         if (!a) return;
         e.preventDefault();
-        var fallbackUrl = a.href;
+        openModal(a.href);
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var email = emailInput.value.trim();
+        var name = nameInput.value.trim();
+        var pronouns = (otherInput.style.display !== 'none' && otherInput.value.trim()) ? otherInput.value.trim() : selectedPronoun;
+
+        var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        if (!emailOk || !name) {
+          errorEl.style.display = 'block';
+          return;
+        }
+        errorEl.style.display = 'none';
+
+        var submitBtn = document.getElementById('bookingSubmit');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Loading...';
 
         try { fbq('track', 'InitiateCheckout', { value: 59, currency: 'USD', content_name: 'femme_two_sessions' }); } catch (err) {}
-        try { if (window.posthog && posthog.capture) posthog.capture('checkout_click', { utm: utm }); } catch (err) {}
-        notify('checkout_click', Object.keys(utm).length ? { utm: utm } : {});
+        try { if (window.posthog) { posthog.identify(email); posthog.capture('checkout_click', { utm: utm, email: email, name: name, pronouns: pronouns }); } } catch (err) {}
+        notify('checkout_click', Object.assign({ email: email, name: name, pronouns: pronouns }, Object.keys(utm).length ? { utm: utm } : {}));
 
         var done = false;
         function goFallback() { if (done) return; done = true; location.href = fallbackUrl; }
@@ -854,7 +1006,7 @@
         fetch('https://curly-poetry-c822.maxim1kuznecov.workers.dev/create-checkout', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ utm: utm }),
+          body: JSON.stringify({ utm: utm, email: email, name: name, pronouns: pronouns }),
         })
           .then(function (r) { return r.json(); })
           .then(function (d) {
