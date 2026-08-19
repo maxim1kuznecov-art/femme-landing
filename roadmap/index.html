@@ -48,7 +48,7 @@
     section + section { border-top: 1px solid var(--border); }
     h2 { font-size: 30px; font-weight: 800; line-height: 1.2; margin-bottom: 18px; }
     .hero { padding: 0; }
-    .hero-photo { width: 100%; height: 360px; background: #1a1a1a; overflow: hidden; }
+    .hero-photo { width: 100%; aspect-ratio: 16 / 9; background: #1a1a1a; overflow: hidden; border-radius: 16px; margin-bottom: 28px; }
     .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
     .hero-content { padding: 40px 24px 56px; }
     .hero-content .container { padding: 0; }
@@ -105,15 +105,15 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-photo">
-      <img src="https://semargi.com/photos/variant-06.png" alt="Personal Roadmap session">
-    </div>
     <div class="hero-content">
       <div class="container">
+        <div class="hero-photo">
+          <img src="https://semargi.com/photos/portrait_redraw_01.png" alt="Personal Roadmap session">
+        </div>
         <div class="label">For clients continuing past their first sessions</div>
         <h1>You've started. Let's build the rest of your routine.</h1>
-        <p>The Personal Roadmap is four private sessions — each one built around a specific concern from your own list — plus a personalized product plan and two photo check-ins so your stylist can see how things are landing between calls.</p>
-        <div class="anchor-line">A single follow-up session is <b>$99</b>. In the Roadmap, four sessions work out to <b>$75 each</b> — plus the product plan and check-ins are included.</div>
+        <p>The Personal Roadmap is four private sessions — each one built around a specific concern from your own list — plus a personalized product plan and a photo check-in between sessions.</p>
+        <div class="anchor-line">A single follow-up session is <b>$99</b>. In the Roadmap, four sessions work out to <b>$75 each</b> — plus the product plan and check-in are included.</div>
         <a href="https://buy.stripe.com/5kQ7sK1ZPbIl9K92tNgYU0L" class="btn btn-full">Start My Roadmap — $299</a>
         <div style="font-size: 13px; color: var(--text-muted); margin-top: 12px; text-align: center;">🔒 Fully private · Same stylist, continuous plan</div>
       </div>
@@ -131,7 +131,7 @@
           <span class="check">✓</span>
           <div>
             <div>4 private sessions, one per concern</div>
-            <div class="desc">Contouring, eyes, day-to-night looks, complexion — whatever is next on your list, in the order that makes sense for you. Most clients have more than two or three things they want to work through, so four sessions gives real room to cover them properly.</div>
+            <div class="desc">Contouring, eyes, day-to-night looks, complexion — whatever is next on your list, in the order that makes sense for you.</div>
           </div>
         </li>
         <li>
@@ -144,8 +144,8 @@
         <li>
           <span class="check">✓</span>
           <div>
-            <div>2 photo check-ins between sessions</div>
-            <div class="desc">Send a photo between calls so your stylist can see how a technique is landing in daily life, not just on camera — and adjust before your next session.</div>
+            <div>1 photo check-in between sessions</div>
+            <div class="desc">A quick photo update between calls, if useful, so your stylist can fine-tune before your next session.</div>
           </div>
         </li>
         <li>
@@ -181,20 +181,8 @@
       <h2>Common questions</h2>
       <div class="faq">
         <div class="faq-item">
-          <div class="faq-q">Do I need to know all four concerns upfront?</div>
-          <div class="faq-a">No. Bring whatever's top of mind for session 1 — your stylist will help you map out the rest as you go, based on what actually comes up.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q">Can I spread the four sessions out over a few months?</div>
-          <div class="faq-a">Yes. There's no expiry — book at whatever pace fits your schedule.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q">What if I've only done one session so far?</div>
-          <div class="faq-a">That's fine — the Roadmap picks up from wherever you are. Your stylist already has context from your earlier session(s).</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q">How do the photo check-ins work?</div>
-          <div class="faq-a">Your stylist will send a simple prompt between sessions — you reply with a photo, and get quick written feedback before your next call.</div>
+          <div class="faq-q">Can I spread the four sessions out over time?</div>
+          <div class="faq-a">We recommend finishing all four within about a month, so the plan and product picks stay tied to what's actually working for you right now.</div>
         </div>
       </div>
     </div>
