@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Roadmap — 4 Sessions · Semargi</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','1525994938895511');
+    fbq('track','PageView');
+  </script>
+
+  <!-- Reddit Pixel -->
+  <script>
+    !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js";t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);
+    rdt('init','a2_jjimp396c7lf');
+    rdt('track', 'PageVisit');
+  </script>
+
+  <!-- PostHog -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once identify set_config reset opt_in_capturing opt_out_capturing".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_tXNhFodRZxQmfqrnHqjiW6eeVLswQLAEiURWKAgwUYFe',{api_host:'https://us.i.posthog.com',person_profiles:'identified_only'});
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --orange: #E8714A; --orange-light: #f08060;
+      --bg: #111111; --bg2: #1a1a1a; --bg3: #222222;
+      --text: #ffffff; --text-muted: #aaaaaa; --border: #333333;
+    }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; line-height: 1.6; }
+    .container { max-width: 680px; margin: 0 auto; padding: 0 24px; }
+    .btn { display: inline-block; background: var(--orange); color: #fff; font-size: 17px; font-weight: 700; padding: 18px 40px; border-radius: 8px; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s; }
+    .btn:hover { background: var(--orange-light); }
+    .btn-full { display: block; text-align: center; width: 100%; }
+    .label { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
+    .label::before { content: ''; display: block; width: 3px; height: 14px; background: var(--orange); border-radius: 2px; }
+    section { padding: 64px 0; }
+    section + section { border-top: 1px solid var(--border); }
+    h2 { font-size: 30px; font-weight: 800; line-height: 1.2; margin-bottom: 18px; }
+    .hero { padding: 0; }
+    .hero-photo { width: 100%; height: 360px; background: #1a1a1a; overflow: hidden; }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .hero-content { padding: 40px 24px 56px; }
+    .hero-content .container { padding: 0; }
+    .hero h1 { font-size: 34px; font-weight: 800; line-height: 1.15; margin-bottom: 16px; }
+    .hero p { font-size: 17px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.6; }
+    .anchor-line { background: var(--bg3); border-radius: 10px; padding: 14px 16px; font-size: 15px; color: #ddd; margin-bottom: 24px; }
+    .anchor-line b { color: var(--orange); }
+    .included-list { list-style: none; margin-top: 8px; }
+    .included-list li { padding: 18px 0; border-bottom: 1px solid var(--border); display: flex; gap: 14px; align-items: flex-start; font-size: 16px; line-height: 1.5; }
+    .included-list li:last-child { border-bottom: none; }
+    .included-list li .desc { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
+    .check { color: var(--orange); font-size: 18px; margin-top: 1px; flex-shrink: 0; }
+    .pricing-card { background: var(--bg3); border-radius: 16px; padding: 36px; text-align: center; margin-top: 8px; border: 1px solid var(--border); }
+    .pricing-card .big-price { font-size: 52px; font-weight: 900; color: var(--orange); line-height: 1; margin: 12px 0 4px; }
+    .pricing-card .price-note { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
+    .pricing-card .secure { font-size: 13px; color: var(--text-muted); margin-top: 14px; }
+    .faq-item { border-bottom: 1px solid var(--border); padding: 20px 0; }
+    .faq-item:first-child { padding-top: 8px; }
+    .faq-q { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .faq-a { font-size: 15px; color: var(--text-muted); line-height: 1.6; }
+    .footer-cta { text-align: center; background: var(--bg2); border-top: none !important; }
+    .footer-cta h2 { margin-bottom: 12px; }
+    .footer-cta p { font-size: 17px; color: var(--text-muted); margin-bottom: 28px; }
+    footer { padding: 28px 24px; border-top: 1px solid var(--border); }
+    .footer-inner { max-width: 680px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-copy { font-size: 13px; color: var(--text-muted); }
+    .footer-links { display: flex; gap: 16px; }
+    .footer-links a { font-size: 13px; color: var(--text-muted); text-decoration: none; }
+    .footer-links a:hover { color: var(--text); }
+    @media (max-width: 480px) { h2 { font-size: 24px; } .hero h1 { font-size: 27px; } .pricing-card .big-price { font-size: 42px; } }
+
+    /* BOOKING MODAL */
+    .booking-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 1000; align-items: center; justify-content: center; padding: 20px; overflow-y: auto; }
+    .booking-modal-overlay.open { display: flex; }
+    .booking-modal { background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; padding: 32px 24px; max-width: 420px; width: 100%; position: relative; margin: auto; }
+    .booking-modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; color: var(--text-muted); font-size: 26px; cursor: pointer; line-height: 1; padding: 4px; }
+    .booking-modal-close:hover { color: var(--text); }
+    .booking-modal h3 { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
+    .booking-modal-sub { font-size: 14px; color: var(--text-muted); margin-bottom: 22px; line-height: 1.5; }
+    .booking-label { display: block; font-size: 13px; font-weight: 700; margin: 18px 0 6px; color: var(--text); }
+    .booking-label.first { margin-top: 0; }
+    .optional-tag { font-weight: 400; color: var(--text-muted); }
+    .booking-input { width: 100%; background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; color: var(--text); font-size: 15px; font-family: inherit; }
+    .booking-input:focus { outline: none; border-color: var(--orange); }
+    .pronoun-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { background: var(--bg3); border: 1px solid var(--border); color: var(--text-muted); padding: 8px 14px; border-radius: 20px; font-size: 13px; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .chip:hover { border-color: var(--orange); color: var(--text); }
+    .chip.selected { background: var(--orange); border-color: var(--orange); color: #fff; }
+    .booking-privacy-note { font-size: 12px; color: var(--text-muted); text-align: center; margin-top: 16px; }
+    .booking-error { font-size: 13px; color: #ff6b6b; margin-top: 8px; display: none; }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-photo">
+      <img src="https://semargi.com/photos/variant-06.png" alt="Personal Roadmap session">
+    </div>
+    <div class="hero-content">
+      <div class="container">
+        <div class="label">For clients continuing past their first sessions</div>
+        <h1>You've started. Let's build the rest of your routine.</h1>
+        <p>The Personal Roadmap is four private sessions — each one built around a specific concern from your own list — plus a personalized product plan and two photo check-ins so your stylist can see how things are landing between calls.</p>
+        <div class="anchor-line">A single follow-up session is <b>$99</b>. In the Roadmap, four sessions work out to <b>$75 each</b> — plus the product plan and check-ins are included.</div>
+        <a href="https://buy.stripe.com/5kQ7sK1ZPbIl9K92tNgYU0L" class="btn btn-full">Start My Roadmap — $299</a>
+        <div style="font-size: 13px; color: var(--text-muted); margin-top: 12px; text-align: center;">🔒 Fully private · Same stylist, continuous plan</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT'S INCLUDED -->
+  <section>
+    <div class="container">
+      <div class="label">What's included</div>
+      <h2>Four sessions. One plan that follows you the whole way.</h2>
+      <p style="color: var(--text-muted); margin-bottom: 24px;">Instead of booking one-off sessions each time something new comes up, the Roadmap covers your next four concerns in one go — with your stylist tracking progress across all of them.</p>
+      <ul class="included-list">
+        <li>
+          <span class="check">✓</span>
+          <div>
+            <div>4 private sessions, one per concern</div>
+            <div class="desc">Contouring, eyes, day-to-night looks, complexion — whatever is next on your list, in the order that makes sense for you. Most clients have more than two or three things they want to work through, so four sessions gives real room to cover them properly.</div>
+          </div>
+        </li>
+        <li>
+          <span class="check">✓</span>
+          <div>
+            <div>Personalized product list</div>
+            <div class="desc">Specific products, shades, and tools picked for your face and skin — updated as your routine evolves, with direct links to order.</div>
+          </div>
+        </li>
+        <li>
+          <span class="check">✓</span>
+          <div>
+            <div>2 photo check-ins between sessions</div>
+            <div class="desc">Send a photo between calls so your stylist can see how a technique is landing in daily life, not just on camera — and adjust before your next session.</div>
+          </div>
+        </li>
+        <li>
+          <span class="check">✓</span>
+          <div>
+            <div>Continuity with your stylist</div>
+            <div class="desc">Same person, same notes, same context every time — no re-explaining your face or your goals at the start of each call.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="container">
+      <div class="label">Pricing</div>
+      <div class="pricing-card">
+        <div style="font-size: 14px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em;">Personal Roadmap · 4 sessions</div>
+        <div class="big-price">$299</div>
+        <div class="price-note">Works out to $75/session — a single session alone is $99</div>
+        <a href="https://buy.stripe.com/5kQ7sK1ZPbIl9K92tNgYU0L" class="btn btn-full">Start My Roadmap — $299</a>
+        <div class="secure" style="margin-bottom: 6px;">🔒 Secure payment via Stripe</div>
+        <div class="secure">📅 Book your first Roadmap session right after checkout</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <div class="container">
+      <div class="label">FAQ</div>
+      <h2>Common questions</h2>
+      <div class="faq">
+        <div class="faq-item">
+          <div class="faq-q">Do I need to know all four concerns upfront?</div>
+          <div class="faq-a">No. Bring whatever's top of mind for session 1 — your stylist will help you map out the rest as you go, based on what actually comes up.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Can I spread the four sessions out over a few months?</div>
+          <div class="faq-a">Yes. There's no expiry — book at whatever pace fits your schedule.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What if I've only done one session so far?</div>
+          <div class="faq-a">That's fine — the Roadmap picks up from wherever you are. Your stylist already has context from your earlier session(s).</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How do the photo check-ins work?</div>
+          <div class="faq-a">Your stylist will send a simple prompt between sessions — you reply with a photo, and get quick written feedback before your next call.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER CTA -->
+  <section class="footer-cta">
+    <div class="container">
+      <h2>Ready to keep going?</h2>
+      <p>Four sessions. One product plan. A routine built end to end. <strong style="color: var(--orange);">$299.</strong></p>
+      <a href="https://buy.stripe.com/5kQ7sK1ZPbIl9K92tNgYU0L" class="btn">Start My Roadmap — $299</a>
+      <div style="font-size: 13px; color: var(--text-muted); margin-top: 12px;">🔒 Fully private · Same stylist throughout</div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-copy">© 2026 Semargi · All rights reserved</div>
+      <div class="footer-links">
+        <a href="/">Back to Semargi</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BOOKING MODAL -->
+  <div class="booking-modal-overlay" id="bookingModalOverlay">
+    <div class="booking-modal">
+      <button type="button" class="booking-modal-close" id="bookingModalClose" aria-label="Close">&times;</button>
+      <h3>Almost there</h3>
+      <p class="booking-modal-sub">Just a couple of details before checkout — so we know how to reach you and address you.</p>
+      <form id="bookingForm">
+        <label class="booking-label first" for="bookingEmail">Email</label>
+        <input class="booking-input" type="email" id="bookingEmail" required placeholder="you@example.com">
+
+        <label class="booking-label" for="bookingName">What should we call you?</label>
+        <input class="booking-input" type="text" id="bookingName" required placeholder="Your name">
+
+        <label class="booking-label">Pronouns <span class="optional-tag">(optional)</span></label>
+        <div class="pronoun-chips" id="pronounChips">
+          <button type="button" class="chip" data-value="She/her">She/her</button>
+          <button type="button" class="chip" data-value="They/them">They/them</button>
+          <button type="button" class="chip" data-value="He/him">He/him</button>
+          <button type="button" class="chip" data-value="Prefer not to say">Prefer not to say</button>
+          <button type="button" class="chip" data-value="__other__">Other</button>
+        </div>
+        <input class="booking-input" type="text" id="pronounOther" placeholder="Type your pronouns" style="display:none; margin-top: 10px;">
+
+        <div class="booking-error" id="bookingError">Please enter a valid email and your name.</div>
+
+        <button type="submit" class="btn btn-full" style="margin-top: 22px;" id="bookingSubmit">Continue to payment — $299</button>
+        <div class="booking-privacy-note">🔒 Only used to reach you about your sessions. Never shared.</div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var WORKER = 'https://curly-poetry-c822.maxim1kuznecov.workers.dev/';
+      function notify(type, props) {
+        try {
+          var body = JSON.stringify(Object.assign({ type: type }, props || {}));
+          fetch(WORKER, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body, keepalive: true }).catch(function(){});
+        } catch (e) {}
+      }
+      // capture UTM once
+      var utm = {};
+      try {
+        var sp = new URLSearchParams(location.search);
+        ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k){ var v = sp.get(k); if (v) utm[k] = v; });
+        if (Object.keys(utm).length) localStorage.setItem('semargi_utm', JSON.stringify(utm));
+        else utm = JSON.parse(localStorage.getItem('semargi_utm') || '{}');
+      } catch (e) {}
+
+      // ── Booking modal (email / name / pronouns before checkout) ──
+      var overlay = document.getElementById('bookingModalOverlay');
+      var form = document.getElementById('bookingForm');
+      var closeBtn = document.getElementById('bookingModalClose');
+      var emailInput = document.getElementById('bookingEmail');
+      var nameInput = document.getElementById('bookingName');
+      var otherInput = document.getElementById('pronounOther');
+      var errorEl = document.getElementById('bookingError');
+      var chips = document.querySelectorAll('.chip');
+      var selectedPronoun = '';
+      var fallbackUrl = '';
+
+      chips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          chips.forEach(function (c) { c.classList.remove('selected'); });
+          chip.classList.add('selected');
+          if (chip.getAttribute('data-value') === '__other__') {
+            otherInput.style.display = 'block';
+            otherInput.focus();
+            selectedPronoun = '';
+          } else {
+            otherInput.style.display = 'none';
+            selectedPronoun = chip.getAttribute('data-value');
+          }
+        });
+      });
+
+      function openModal(href) {
+        fallbackUrl = href;
+        errorEl.style.display = 'none';
+        overlay.classList.add('open');
+      }
+      function closeModal() { overlay.classList.remove('open'); }
+      closeBtn.addEventListener('click', closeModal);
+      overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
+
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest ? e.target.closest('a[href*="buy.stripe.com"]') : null;
+        if (!a) return;
+        e.preventDefault();
+        openModal(a.href);
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var email = emailInput.value.trim();
+        var name = nameInput.value.trim();
+        var pronouns = (otherInput.style.display !== 'none' && otherInput.value.trim()) ? otherInput.value.trim() : selectedPronoun;
+
+        var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        if (!emailOk || !name) {
+          errorEl.style.display = 'block';
+          return;
+        }
+        errorEl.style.display = 'none';
+
+        var submitBtn = document.getElementById('bookingSubmit');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Loading...';
+
+        try { fbq('track', 'InitiateCheckout', { value: 299, currency: 'USD', content_name: 'semargi_roadmap' }); } catch (err) {}
+        try { if (window.rdt) rdt('track', 'AddToCart'); } catch (err) {}
+        try { if (window.posthog) { posthog.identify(email); posthog.capture('checkout_click', { utm: utm, email: email, name: name, pronouns: pronouns, product: 'roadmap' }); } } catch (err) {}
+        notify('checkout_click', Object.assign({ email: email, name: name, pronouns: pronouns, product: 'roadmap' }, Object.keys(utm).length ? { utm: utm } : {}));
+
+        var done = false;
+        function goFallback() { if (done) return; done = true; location.href = fallbackUrl; }
+        var safety = setTimeout(goFallback, 4000);
+
+        fetch('https://curly-poetry-c822.maxim1kuznecov.workers.dev/create-checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ utm: utm, email: email, name: name, pronouns: pronouns, product: 'roadmap' }),
+        })
+          .then(function (r) { return r.json(); })
+          .then(function (d) {
+            clearTimeout(safety);
+            if (done) return;
+            done = true;
+            if (d && d.url) { location.href = d.url; } else { goFallback(); }
+          })
+          .catch(function () { clearTimeout(safety); goFallback(); });
+      });
+    })();
+  </script>
+
+</body>
+</html>
