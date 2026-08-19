@@ -17,6 +17,13 @@
     fbq('track','PageView');
   </script>
 
+  <!-- Reddit Pixel -->
+  <script>
+    !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js";t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);
+    rdt('init','a2_jjimp396c7lf');
+    rdt('track', 'PageVisit');
+  </script>
+
   <!-- PostHog -->
   <script>
     !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once identify set_config reset opt_in_capturing opt_out_capturing".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
@@ -470,11 +477,10 @@
         <div class="hero-price-row">
           <div>
             <div class="price-label">Two sessions</div>
-            <div class="price-tag"><span style="text-decoration: line-through; color: var(--text-muted); font-weight: 600; font-size: 18px; margin-right: 8px;">$59</span>$29.50</div>
-            <div style="display:inline-block; background: var(--orange); color:#fff; font-size:11px; font-weight:700; padding:3px 10px; border-radius:20px; margin-top: 6px; letter-spacing:0.03em;">50% OFF · THROUGH AUG 31</div>
+            <div class="price-tag">$59</div>
           </div>
         </div>
-        <a href="https://buy.stripe.com/6oUdR847X7s53lL2tNgYU0K" class="btn btn-full">Book Now — $29.50</a>
+        <a href="https://buy.stripe.com/6oUdR847X7s53lL2tNgYU0K" class="btn btn-full">Book Now — $59</a>
         <div style="font-size: 13px; color: var(--text-muted); margin-top: 12px; text-align: center;">🔒 Fully private · Confidential · Available in every time zone</div>
       </div>
     </div>
@@ -609,7 +615,6 @@
       </ul>
     </div>
   </section>
-
   <!-- HOW IT WORKS -->
   <section>
     <div class="container">
@@ -724,7 +729,6 @@
       </div>
     </div>
   </section>
-
   <!-- PORTFOLIO -->
   <section>
     <div class="container">
@@ -796,8 +800,7 @@
       <div class="label">Pricing</div>
       <div class="pricing-card">
         <div style="font-size: 14px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em;">Two sessions</div>
-        <div style="display:inline-block; background: var(--orange); color:#fff; font-size:12px; font-weight:700; padding:4px 12px; border-radius:20px; margin-top: 12px; letter-spacing:0.03em;">50% OFF · THROUGH AUG 31</div>
-        <div class="big-price"><span style="text-decoration: line-through; color: var(--text-muted); font-weight: 600; font-size: 28px; margin-right: 10px; vertical-align: middle;">$59</span>$29.50</div>
+        <div class="big-price">$59</div>
         <div class="price-note">Session 1: understanding your face &amp; goals · Session 2: solving your problem hands-on</div>
         <ul class="pricing-includes">
           <li><span class="check">✓</span> Two live 1:1 video sessions with your stylist</li>
@@ -807,7 +810,7 @@
           <li><span class="check">✓</span> Product recommendations with links to order online</li>
           <li><span class="check">✓</span> Fully confidential — no recording shared with anyone</li>
         </ul>
-        <a href="https://buy.stripe.com/6oUdR847X7s53lL2tNgYU0K" class="btn btn-full">Book Now — $29.50</a>
+        <a href="https://buy.stripe.com/6oUdR847X7s53lL2tNgYU0K" class="btn btn-full">Book Now — $59</a>
         <div class="secure" style="margin-bottom: 6px;">🔒 Secure payment via Stripe · Available in every time zone</div>
         <div class="secure">📅 You'll pick your session time right after checkout — slots available this week</div>
 
@@ -821,7 +824,6 @@
       </div>
     </div>
   </section>
-
   <!-- FAQ -->
   <section>
     <div class="container">
@@ -872,8 +874,8 @@
   <section class="footer-cta">
     <div class="container">
       <h2>Ready to take one clear step forward?</h2>
-      <p>Two sessions. One focus. A routine you can use tomorrow morning. <strong style="color: var(--orange);">50% off through Aug 31 — $29.50.</strong></p>
-      <a href="https://buy.stripe.com/6oUdR847X7s53lL2tNgYU0K" class="btn">Book Now — $29.50</a>
+      <p>Two sessions. One focus. A routine you can use tomorrow morning. <strong style="color: var(--orange);">$59.</strong></p>
+      <a href="https://buy.stripe.com/6oUdR847X7s53lL2tNgYU0K" class="btn">Book Now — $59</a>
       <div style="font-size: 13px; color: var(--text-muted); margin-top: 12px;">🛡️ Money-back guarantee · 🔒 Fully private · 🌍 Every time zone</div>
     </div>
   </section>
@@ -913,12 +915,11 @@
 
         <div class="booking-error" id="bookingError">Please enter a valid email and your name.</div>
 
-        <button type="submit" class="btn btn-full" style="margin-top: 22px;" id="bookingSubmit">Continue to payment — $29.50</button>
+        <button type="submit" class="btn btn-full" style="margin-top: 22px;" id="bookingSubmit">Continue to payment — $59</button>
         <div class="booking-privacy-note">🔒 Only used to reach you about your sessions. Never shared.</div>
       </form>
     </div>
   </div>
-
   <script>
     (function () {
       var WORKER = 'https://curly-poetry-c822.maxim1kuznecov.workers.dev/';
@@ -997,7 +998,8 @@
         submitBtn.disabled = true;
         submitBtn.textContent = 'Loading...';
 
-        try { fbq('track', 'InitiateCheckout', { value: 29.5, currency: 'USD', content_name: 'femme_two_sessions' }); } catch (err) {}
+        try { fbq('track', 'InitiateCheckout', { value: 59, currency: 'USD', content_name: 'femme_two_sessions' }); } catch (err) {}
+        try { if (window.rdt) rdt('track', 'AddToCart'); } catch (err) {}
         try { if (window.posthog) { posthog.identify(email); posthog.capture('checkout_click', { utm: utm, email: email, name: name, pronouns: pronouns }); } } catch (err) {}
         notify('checkout_click', Object.assign({ email: email, name: name, pronouns: pronouns }, Object.keys(utm).length ? { utm: utm } : {}));
 
