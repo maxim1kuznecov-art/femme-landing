@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Payment received — Book your session · Semargi</title>
   <meta name="robots" content="noindex">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root { --orange:#E8714A; --bg:#111; --bg2:#1a1a1a; --bg3:#222; --text:#fff; --muted:#aaa; --border:#333; }
@@ -35,6 +34,13 @@
     document,'script','https://connect.facebook.net/en_US/fbevents.js');
     fbq('init','1525994938895511');
     fbq('track','PageView');
+  </script>
+
+  <!-- Reddit Pixel -->
+  <script>
+    !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js";t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);
+    rdt('init','a2_jjimp396c7lf');
+    rdt('track', 'PageVisit');
   </script>
 
   <!-- PostHog -->
@@ -88,6 +94,7 @@
       if (!already) {
         try { localStorage.setItem(guard, String(Date.now())); } catch (e) {}
         try { fbq('track', 'Purchase', { value: 59, currency: 'USD', content_name: 'femme_two_sessions' }, sid ? { eventID: sid } : undefined); } catch (e) {}
+        try { if (window.rdt) rdt('track', 'Purchase', { value: 59, currency: 'USD', products: [{ id: 'femme_two_sessions' }] }); } catch (e) {}
         ph('purchase', { value: 59, currency: 'USD', session: sid });
         notify('thanks_view', sid ? { name: 'session ' + sid.slice(-8) } : {});
       } else {
